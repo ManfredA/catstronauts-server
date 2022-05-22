@@ -3,10 +3,17 @@ const typeDefs = require('./schema');
 const resolvers = require('./resolvers');
 const TrackAPI = require('./datasources/track-api');
 
+import { ApolloServerPluginUsageReporting } from "apollo-server-core";
+
 async function startApolloServer(typeDefs, resolvers) {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
+    plugins: [
+      ApolloServerPluginUsageReporting({
+        fieldLevelInstrumentation: 0.5,
+      }),
+    ],
     dataSources: () => {
       return {
         trackAPI: new TrackAPI(),
