@@ -3,7 +3,7 @@ const typeDefs = require('./schema');
 const resolvers = require('./resolvers');
 const TrackAPI = require('./datasources/track-api');
 
-import { ApolloServerPluginUsageReporting } from "apollo-server-core";
+const { ApolloServerPluginUsageReporting } = require("apollo-server-core");
 
 async function startApolloServer(typeDefs, resolvers) {
   const server = new ApolloServer({
